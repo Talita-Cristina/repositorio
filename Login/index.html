@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MinhaPaginaLogin</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <form id="loginForm">
+      <h1>LoginPage</h1>
+
+      <div class="input-box">
+        <input id="usuario" name="usuario" placeholder="Usuário" type="text" autocomplete="username" required>
+        <i class="bx bxs-user"></i>
+      </div>
+
+      <div class="input-box">
+        <input id="senha" name="senha" placeholder="Senha" type="password" autocomplete="current-password" required>
+        <i class="bx bxs-lock-alt"></i>
+      </div>
+
+      <div class="remember-forgot">
+        <label>
+          <input type="checkbox">
+          Lembrar minha senha
+        </label>
+        <a href="#">Esqueci minha senha</a>
+      </div>
+
+      <button type="submit">Login</button>
+
+      <div class="register-link">
+        <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
+      </div>
+    </form>
+
+    <p id="mensagem"></p>
+  </main>
+
+  <script>
+    const usuarios = [
+      { login: "joao", senha: "123" },
+      { login: "maria", senha: "abc" },
+      { login: "ana", senha: "x,y,x" }
+    ];
+
+    const form = document.getElementById("loginForm");
+    const mensagem = document.getElementById("mensagem");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); // evita o reload da página
+
+      const usuarioDigitado = document.getElementById("usuario").value;
+      const senhaDigitada = document.getElementById("senha").value;
+
+      let autenticado = false;
+
+      for (let i = 0; i < usuarios.length; i++) {
+        if (usuarios[i].login === usuarioDigitado && usuarios[i].senha === senhaDigitada) {
+          autenticado = true;
+          break;
+        }
+      }
+
+      if (autenticado) {
+        mensagem.textContent = "✅ Login realizado com sucesso!";
+        mensagem.style.color = "green";
+      } else {
+        mensagem.textContent = "❌ Usuário ou senha inválidos!";
+        mensagem.style.color = "red";
+      }
+    });
+  </script>
+</body>
+</html>
+    
